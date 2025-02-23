@@ -1,0 +1,27 @@
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.12.35707.178 d17.12
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SimpleBudgetTracker.Api.AppHost", "SimpleBudgetTracker.Api.AppHost\SimpleBudgetTracker.Api.AppHost.csproj", "{3808B645-BCE7-41D3-B99F-80AE389ED81D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SimpleBudgetTracker.Api.ServiceDefaults", "SimpleBudgetTracker.Api.ServiceDefaults\SimpleBudgetTracker.Api.ServiceDefaults.csproj", "{8C98B410-4024-47B5-94B4-FBC8471FDCBA}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{3808B645-BCE7-41D3-B99F-80AE389ED81D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3808B645-BCE7-41D3-B99F-80AE389ED81D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3808B645-BCE7-41D3-B99F-80AE389ED81D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3808B645-BCE7-41D3-B99F-80AE389ED81D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8C98B410-4024-47B5-94B4-FBC8471FDCBA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8C98B410-4024-47B5-94B4-FBC8471FDCBA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8C98B410-4024-47B5-94B4-FBC8471FDCBA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8C98B410-4024-47B5-94B4-FBC8471FDCBA}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
