@@ -5,9 +5,11 @@ CREATE TABLE sbt.User (
 	FirstName 		TEXT		NULL,	
 	LastName    	TEXT		NULL,	
 	CreatedOn   	TIMESTAMP 	NOT NULL	DEFAULT CURRENT_TIMESTAMP,
-    CreatedById     BIG INT     NOT NULL    REFERENCES User(Id),
-	UpdatedOn   	TIMESTAMP 	NOT NULL	DEFAULT CURRENT_TIMESTAMP,
-    UpdatedById     BIG INT     NOT NULL    REFERENCES User(Id),
-	IsDeleted   	BOOLEAN 	NOT NULL	DEFAULT FALSE
+    CreatedById     BIGINT      NOT NULL    REFERENCES sbt.User(Id),
+	UpdatedOn   	TIMESTAMP   NOT NULL	DEFAULT CURRENT_TIMESTAMP,
+    UpdatedById     BIGINT      NOT NULL    REFERENCES sbt.User(Id),
+	IsDeleted   	BOOLEAN	    NOT NULL	DEFAULT FALSE
 );
+
+CREATE UNIQUE INDEX user_guid_idx on sbt.User(Guid); 
 

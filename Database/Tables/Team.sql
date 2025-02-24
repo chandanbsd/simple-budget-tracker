@@ -4,8 +4,10 @@ CREATE TABLE sbt.Team (
 	TeamName 		TEXT		NOT NULL,
 	Description 	TEXT		NULL,	
 	CreatedOn   	TIMESTAMP 	NOT NULL	DEFAULT CURRENT_TIMESTAMP,
-    CreatedById     BIG INT     NOT NULL    REFERENCES User(Id),
+    CreatedById     BIGINT     NOT NULL    REFERENCES sbt.User(Id),
 	UpdatedOn   	TIMESTAMP 	NOT NULL	DEFAULT CURRENT_TIMESTAMP,
-    UpdatedById     BIG INT     NOT NULL    REFERENCES User(Id),
+    UpdatedById     BIGINT     NOT NULL    REFERENCES sbt.User(Id),
 	IsDeleted   	BOOLEAN 	NOT NULL	DEFAULT FALSE
 );
+
+CREATE UNIQUE INDEX team_guid_idx on sbt.Team(Guid); 
