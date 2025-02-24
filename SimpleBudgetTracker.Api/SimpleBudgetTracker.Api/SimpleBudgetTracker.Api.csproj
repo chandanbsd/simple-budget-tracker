@@ -15,6 +15,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\SimpleBudgetTracker.Api.ServiceDefaults\SimpleBudgetTracker.Api.ServiceDefaults.csproj" />
+    <ProjectReference Include="..\SimpleBudgetTracker.Business\SimpleBudgetTracker.Business.csproj" />
   </ItemGroup>
 
 </Project>
