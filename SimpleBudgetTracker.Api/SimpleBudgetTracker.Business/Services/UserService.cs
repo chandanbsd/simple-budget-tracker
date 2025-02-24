@@ -1,42 +1,43 @@
-﻿using Microsoft.Extensions.Logging;
+﻿using AutoMapper;
+using Microsoft.Extensions.Logging;
+using SimpleBudgetTracker.Business.Services.Interfaces;
 using SimpleBudgetTracker.Data.Contexts.Interfaces;
 using SimpleBudgetTracker.Data.Entities;
+using SimpleBudgetTracker.Models;
 
 namespace SimpleBudgetTracker.Business.Services;
 
-internal class UserService
+public class UserService: IUserService
 {
     private readonly ILogger<UserService> _logger;
+
+    private readonly IMapper _mapper;
 
     private ISimpleBudgetTrackerContext _dbContext;
 
     public UserService(
         ILogger<UserService> logger,
-        ISimpleBudgetTrackerContext dbContext)
+        ISimpleBudgetTrackerContext dbContext,
+        IMapper mapper)
     {
         _logger = logger;
         _dbContext = dbContext;
+        _mapper = mapper;
     }
 
-    public async void Create(
-        string userName,
-        string firstName,
-        string lastName,
-        int createdById,
-        int updatedById)
+    public async Task<UserModel> Create(UserModel payload)
     {
 
-        if (!string.IsNullOrWhiteSpace(userName) && await _dbContext.IsUserNameUnique(userName) )
+        if (!string.IsNullOrWhiteSpace(payload.UserName) && await _dbContext.IsUserNameUnique(payload.UserName) )
         {
             throw new Exception("Unable to assign the username. Please try another username!");
         }
 
         User user = User.Create(
-            userName,
-            firstName,
-            lastName,
-            createdById,
-            updatedById);
+            payload.UserName,
+            payload.FirstName,
+            payload.LastName,
+            payload.CreatedById);
 
         using var transaction = await _dbContext.Database.BeginTransactionAsync();
 
@@ -46,11 +47,15 @@ internal class UserService
             await _dbContext.Users.AddAsync(user);
             await _dbContext.SaveChangesAsync(false);
             await transaction.CommitAsync();
+
+            return _mapper.Map<User, UserModel>(user);
         }
         catch (Exception ex)
         {
             _logger.LogError(ex, "An error occurred while creating the user.");
             await transaction.RollbackAsync();
+
+            throw new Exception("Failed to create user");
         }
     }
 }

@@ -7,11 +7,13 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="AutoMapper" Version="14.0.0" />
     <PackageReference Include="Microsoft.Extensions.Logging.Abstractions" Version="9.0.2" />
   </ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\SimpleBudgetTracker.Data\SimpleBudgetTracker.Data.csproj" />
+    <ProjectReference Include="..\SimpleBudgetTracker.Models\SimpleBudgetTracker.Models.csproj" />
   </ItemGroup>
 
 </Project>

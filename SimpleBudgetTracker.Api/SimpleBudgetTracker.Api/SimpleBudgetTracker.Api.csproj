@@ -9,6 +9,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="AutoMapper" Version="14.0.0" />
     <PackageReference Include="Microsoft.AspNetCore.OpenApi" Version="9.0.1" />
     <PackageReference Include="Microsoft.VisualStudio.Azure.Containers.Tools.Targets" Version="1.21.0" />
   </ItemGroup>
@@ -16,6 +17,7 @@
   <ItemGroup>
     <ProjectReference Include="..\SimpleBudgetTracker.Api.ServiceDefaults\SimpleBudgetTracker.Api.ServiceDefaults.csproj" />
     <ProjectReference Include="..\SimpleBudgetTracker.Business\SimpleBudgetTracker.Business.csproj" />
+    <ProjectReference Include="..\SimpleBudgetTracker.Models\SimpleBudgetTracker.Models.csproj" />
   </ItemGroup>
 
 </Project>

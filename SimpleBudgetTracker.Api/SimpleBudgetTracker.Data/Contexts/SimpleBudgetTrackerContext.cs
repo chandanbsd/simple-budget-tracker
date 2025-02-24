@@ -38,6 +38,4 @@ public partial class SimpleBudgetTrackerContext : DbContext, ISimpleBudgetTracke
     {
         return base.SaveChangesAsync(acceptAllChangesOnSuccess, cancellationToken);
     }
-
-    public virtual DatabaseFacade Database { get; set; }
 }

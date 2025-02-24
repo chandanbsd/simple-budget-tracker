@@ -1,5 +1,8 @@
-﻿namespace SimpleBudgetTracker.Business.Services.Interfaces;
+﻿using SimpleBudgetTracker.Models;
 
-internal interface IUserService
+namespace SimpleBudgetTracker.Business.Services.Interfaces;
+
+public interface IUserService
 {
+    Task<UserModel> Create(UserModel payload);
 }

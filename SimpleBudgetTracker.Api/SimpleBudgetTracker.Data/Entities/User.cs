@@ -7,40 +7,39 @@ using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace SimpleBudgetTracker.Data.Entities;
 
-public class User: IAudit
+public class User
 {
-    public required int Id { get; private set; }
+    public int Id { get; private set; }
 
-    public required Guid Guid { get; private set; }
-    
-    public string UserName { get; private set; }
+    public Guid Guid { get; private set; }
+
+    public string UserName { get; private set; } = default!;
 
     public string Email { get; private set; } = default!;
 
-    public required string FirstName { get; set; }
+    public string FirstName { get; set; } = default!;
 
-    public required string LastName { get; set; }
+    public string LastName { get; set; } = default!;
 
-    public required DateTime CreatedOn { get; private set; }
+    public DateTime CreatedOn { get; private set; }
 
-    public required int CreatedById { get; private set; }
+    public int CreatedById { get; private set; }
 
-    public DateTime? UpdatedOn { get; private set; }
+    public DateTime? UpdatedOn { get; private set; } 
 
     public int? UpdatedById { get; private set; }
 
-    public required bool IsActive { get; private set; }
+    public bool IsActive { get; private set; }
 
-    public virtual User CreatedBy { get; private set; }
+    public virtual User CreatedBy { get; private set; } = default!;
 
-    public virtual User UpdatedBy { get; private set; }
+    public virtual User? UpdatedBy { get; private set; }
 
     public static User Create(
         string userName,
         string firstName,
         string lastName,
-        int createdById,
-        int updatedById)
+        int createdById)
     {
         return new User
         {
@@ -48,7 +47,6 @@ public class User: IAudit
             FirstName = firstName,
             LastName = lastName,
             CreatedById = createdById,
-            UpdatedById = updatedById,
         };
     }
 

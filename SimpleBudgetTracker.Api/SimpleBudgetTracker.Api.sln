@@ -12,6 +12,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SimpleBudgetTracker.Busines
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SimpleBudgetTracker.Data", "SimpleBudgetTracker.Data\SimpleBudgetTracker.Data.csproj", "{BD15D789-4F22-4A0F-9746-FBAB750C83D3}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SimpleBudgetTracker.Models", "SimpleBudgetTracker.Models\SimpleBudgetTracker.Models.csproj", "{0C5468E7-A749-4352-BD2B-D0DA42BFE13F}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -38,6 +40,10 @@ Global
 		{BD15D789-4F22-4A0F-9746-FBAB750C83D3}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{BD15D789-4F22-4A0F-9746-FBAB750C83D3}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{BD15D789-4F22-4A0F-9746-FBAB750C83D3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0C5468E7-A749-4352-BD2B-D0DA42BFE13F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0C5468E7-A749-4352-BD2B-D0DA42BFE13F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0C5468E7-A749-4352-BD2B-D0DA42BFE13F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0C5468E7-A749-4352-BD2B-D0DA42BFE13F}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

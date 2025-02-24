@@ -7,9 +7,10 @@ namespace SimpleBudgetTracker.Data.Contexts;
 
 public partial class SimpleBudgetTrackerContext : ISimpleBudgetTrackerContext
 {
-    public bool IsUserNameUnique(string userName)
+    public async Task<bool> IsUserNameUnique(string userName)
     {
         // TODO: Move to the newer username table
-        return Users.Where(user => user.UserName == userName).Any();
+        var res = await Users.Where(user => user.UserName == userName).AnyAsync();
+        return res;
     }
 }
