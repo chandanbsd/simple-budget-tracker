@@ -3,9 +3,6 @@ using SimpleBudgetTracker.Api;
 using SimpleBudgetTracker.Business.Services;
 using SimpleBudgetTracker.Business.Services.Interfaces;
 using SimpleBudgetTracker.Data.Contexts;
-using SimpleBudgetTracker.Data.Contexts.Interfaces;
-using Microsoft.EntityFrameworkCore;
-using System.Reflection;
 
 var builder = WebApplication.CreateBuilder(args);
 

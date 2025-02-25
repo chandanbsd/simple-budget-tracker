@@ -7,7 +7,7 @@ namespace SimpleBudgetTracker.Data.Contexts;
 
 public partial class SimpleBudgetTrackerContext : DbContext, ISimpleBudgetTrackerContext
 {
-    public DbSet<User> Users { get; set; }
+    public DbSet<User> Users  =>  Set<User>();
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
