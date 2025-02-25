@@ -1,10 +1,11 @@
 ﻿using AutoMapper;
 using Microsoft.Extensions.Logging;
+using SimpleBudgetTracker.Business.Constants;
 using SimpleBudgetTracker.Business.Services.Interfaces;
 using SimpleBudgetTracker.Data.Contexts;
 using SimpleBudgetTracker.Data.Contexts.Interfaces;
 using SimpleBudgetTracker.Data.Entities;
-using SimpleBudgetTracker.Models;
+using SimpleBudgetTracker.Models.OutputModels;
 
 namespace SimpleBudgetTracker.Business.Services;
 
@@ -26,19 +27,19 @@ public class UserService: IUserService
         _mapper = mapper;
     }
 
-    public async Task<UserModel> Create(UserModel payload)
+    public async Task<UserModel> Create(SimpleBudgetTracker.Models.InputModels.UserModel payload)
     {
 
-        if (!string.IsNullOrWhiteSpace(payload.UserName) && await _dbContext.IsUserNameUnique(payload.UserName) )
-        {
-            throw new Exception("Unable to assign the username. Please try another username!");
-        }
+        //if (!string.IsNullOrWhiteSpace(payload.UserName) && await _dbContext.IsUserNameUnique(payload.UserName) )
+        //{
+        //    throw new Exception("Unable to assign the username. Please try another username!");
+        //}
 
         User user = User.Create(
             payload.UserName,
             payload.FirstName,
             payload.LastName,
-            payload.CreatedById);
+            SystemConstants.ApiUserId);
 
         using var transaction = await _dbContext.Database.BeginTransactionAsync();
 

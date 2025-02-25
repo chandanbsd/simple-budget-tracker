@@ -16,11 +16,7 @@ public partial class SimpleBudgetTrackerContext : DbContext, ISimpleBudgetTracke
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
-        base.OnModelCreating(modelBuilder);
-
-        modelBuilder
-            .Entity<User>()
-            .ToTable("users");
+        modelBuilder.HasDefaultSchema("sbt");
 
         modelBuilder.Entity<User>(entity =>
         {
@@ -37,6 +33,7 @@ public partial class SimpleBudgetTrackerContext : DbContext, ISimpleBudgetTracke
                 .WithMany();
         });
 
+        base.OnModelCreating(modelBuilder);
     }
 
     public override Task<int> SaveChangesAsync(bool acceptAllChangesOnSuccess, CancellationToken cancellationToken = default)

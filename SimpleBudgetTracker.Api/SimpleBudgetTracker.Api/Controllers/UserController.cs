@@ -1,6 +1,6 @@
 using Microsoft.AspNetCore.Mvc;
 using SimpleBudgetTracker.Business.Services.Interfaces;
-using SimpleBudgetTracker.Models;
+using SimpleBudgetTracker.Models.OutputModels;
 
 namespace SimpleBudgetTracker.Api.Controllers;
 
@@ -20,7 +20,7 @@ public class UserController : ControllerBase
     }
 
     [HttpPost]
-    public async Task<UserModel> CreateUser([FromBody] UserModel payload)
+    public async Task<SimpleBudgetTracker.Models.OutputModels.UserModel> CreateUser([FromBody] SimpleBudgetTracker.Models.InputModels.UserModel payload)
     {
         var res = await _userService.Create(payload);
 

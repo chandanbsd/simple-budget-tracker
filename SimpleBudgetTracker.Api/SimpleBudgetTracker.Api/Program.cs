@@ -20,8 +20,10 @@ builder.Services.AddAutoMapper(typeof(MappingProfile), typeof(SimpleBudgetTracke
 builder.Services.AddScoped<IUserService, UserService>();
 
 builder.Services.AddDbContext<SimpleBudgetTrackerContext>(options =>
-options.UseNpgsql(builder.Configuration.GetConnectionString("postgresdb")
+options.UseNpgsql(builder.Configuration.GetConnectionString("SimpleBudgetTracker")
     ?? throw new InvalidOperationException("Connection string 'postgresdb' not found")));
+
+builder.Services.AddOpenApiDocument();
 
 var app = builder.Build();
 
@@ -32,6 +34,9 @@ if (app.Environment.IsDevelopment())
 {
     app.MapOpenApi();
     app.MapScalarApiReference();
+
+    app.UseOpenApi();
+    app.UseSwaggerUi();
 }
 
 app.UseHttpsRedirection();
