@@ -7,6 +7,11 @@ namespace SimpleBudgetTracker.Data.Contexts;
 
 public partial class SimpleBudgetTrackerContext : DbContext, ISimpleBudgetTrackerContext
 {
+    public SimpleBudgetTrackerContext(DbContextOptions<SimpleBudgetTrackerContext> options): base(options)
+    {
+
+    }
+
     public DbSet<User> Users  =>  Set<User>();
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)

@@ -1,3 +1,4 @@
+using Microsoft.EntityFrameworkCore;
 using Scalar.AspNetCore;
 using SimpleBudgetTracker.Api;
 using SimpleBudgetTracker.Business.Services;
@@ -18,7 +19,9 @@ builder.Services.AddAutoMapper(typeof(MappingProfile), typeof(SimpleBudgetTracke
 
 builder.Services.AddScoped<IUserService, UserService>();
 
-builder.Services.AddDbContext<SimpleBudgetTrackerContext>();
+builder.Services.AddDbContext<SimpleBudgetTrackerContext>(options =>
+options.UseNpgsql(builder.Configuration.GetConnectionString("postgresdb")
+    ?? throw new InvalidOperationException("Connection string 'postgresdb' not found")));
 
 var app = builder.Build();
 

@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using Microsoft.Extensions.Logging;
 using SimpleBudgetTracker.Business.Services.Interfaces;
+using SimpleBudgetTracker.Data.Contexts;
 using SimpleBudgetTracker.Data.Contexts.Interfaces;
 using SimpleBudgetTracker.Data.Entities;
 using SimpleBudgetTracker.Models;
@@ -13,11 +14,11 @@ public class UserService: IUserService
 
     private readonly IMapper _mapper;
 
-    private ISimpleBudgetTrackerContext _dbContext;
+    private SimpleBudgetTrackerContext _dbContext;
 
     public UserService(
         ILogger<UserService> logger,
-        ISimpleBudgetTrackerContext dbContext,
+        SimpleBudgetTrackerContext dbContext,
         IMapper mapper)
     {
         _logger = logger;
