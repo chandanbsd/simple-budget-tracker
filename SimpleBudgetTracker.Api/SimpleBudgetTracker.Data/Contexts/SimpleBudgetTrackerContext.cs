@@ -20,7 +20,7 @@ public partial class SimpleBudgetTrackerContext : DbContext, ISimpleBudgetTracke
 
         modelBuilder.Entity<User>(entity =>
         {
-            entity.ToTable("User");
+            entity.ToTable("user");
 
             entity.HasKey(e => e.Id);
 
