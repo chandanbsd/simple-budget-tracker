@@ -20,7 +20,7 @@ public class UserController : ControllerBase
     }
 
     [HttpPost]
-    public async Task<SimpleBudgetTracker.Models.OutputModels.UserModel> CreateUser([FromBody] SimpleBudgetTracker.Models.InputModels.UserModel payload)
+    public async Task<SimpleBudgetTracker.Models.OutputModels.UserModel?> CreateUser([FromBody] SimpleBudgetTracker.Models.InputModels.UserModel payload)
     {
         var res = await _userService.Create(payload);
 

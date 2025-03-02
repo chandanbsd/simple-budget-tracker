@@ -2,6 +2,7 @@
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using SimpleBudgetTracker.Data.Contexts.Interfaces;
 using SimpleBudgetTracker.Data.Entities;
+using System.Reflection.Emit;
 
 namespace SimpleBudgetTracker.Data.Contexts;
 
@@ -12,10 +13,11 @@ public partial class SimpleBudgetTrackerContext : DbContext, ISimpleBudgetTracke
 
     }
 
-    public DbSet<User> Users  =>  Set<User>();
+    public DbSet<User> Users => Set<User>();
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
-    {
+    { 
+
         modelBuilder.HasDefaultSchema("sbt");
 
         modelBuilder.Entity<User>(entity =>
@@ -34,6 +36,12 @@ public partial class SimpleBudgetTrackerContext : DbContext, ISimpleBudgetTracke
         });
 
         base.OnModelCreating(modelBuilder);
+    }
+
+    protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+    {
+        optionsBuilder
+            .EnableDetailedErrors();
     }
 
     public override Task<int> SaveChangesAsync(bool acceptAllChangesOnSuccess, CancellationToken cancellationToken = default)

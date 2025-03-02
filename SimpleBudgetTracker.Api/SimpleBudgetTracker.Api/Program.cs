@@ -1,9 +1,11 @@
-using Microsoft.EntityFrameworkCore;
+using Namotion.Reflection;
 using Scalar.AspNetCore;
 using SimpleBudgetTracker.Api;
+using SimpleBudgetTracker.Api.Extensions;
+using SimpleBudgetTracker.Business;
 using SimpleBudgetTracker.Business.Services;
 using SimpleBudgetTracker.Business.Services.Interfaces;
-using SimpleBudgetTracker.Data.Contexts;
+using System.Reflection;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -15,15 +17,23 @@ builder.Services.AddControllers();
 // Learn more about configuring OpenAPI at https://aka.ms/aspnet/openapi
 builder.Services.AddOpenApi();
 
-builder.Services.AddAutoMapper(typeof(MappingProfile), typeof(SimpleBudgetTracker.Business.MappingProfile));
+builder.Services.AddAutoMapper(typeof(MappingProfile), typeof(SimpleBudgetTracker.Business.SimpleBudgetTrackerProfile));
 
 builder.Services.AddScoped<IUserService, UserService>();
+string? databaseConnectionString = builder.Configuration.GetConnectionString("SimpleBudgetTrackerDB");
 
-builder.Services.AddDbContext<SimpleBudgetTrackerContext>(options =>
-options.UseNpgsql(builder.Configuration.GetConnectionString("SimpleBudgetTracker")
-    ?? throw new InvalidOperationException("Connection string 'postgresdb' not found")));
+if(!string.IsNullOrWhiteSpace(databaseConnectionString))
+{
+    builder.AddDatabase(databaseConnectionString);
+} else
+{
+    Console.WriteLine("\"Connection string 'postgresdb' not found\"");
+    throw new Exception("Connection string 'postgresdb' not found");
+}
 
 builder.Services.AddOpenApiDocument();
+
+builder.Services.AddAutoMapper(typeof(SimpleBudgetTrackerProfile));
 
 var app = builder.Build();
 

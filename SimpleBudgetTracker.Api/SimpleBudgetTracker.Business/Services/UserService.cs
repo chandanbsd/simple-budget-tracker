@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
 using SimpleBudgetTracker.Business.Constants;
 using SimpleBudgetTracker.Business.Services.Interfaces;
@@ -27,7 +28,7 @@ public class UserService: IUserService
         _mapper = mapper;
     }
 
-    public async Task<UserModel> Create(SimpleBudgetTracker.Models.InputModels.UserModel payload)
+    public async Task<UserModel?> Create(SimpleBudgetTracker.Models.InputModels.UserModel payload)
     {
 
         //if (!string.IsNullOrWhiteSpace(payload.UserName) && await _dbContext.IsUserNameUnique(payload.UserName) )
@@ -41,23 +42,32 @@ public class UserService: IUserService
             payload.LastName,
             SystemConstants.ApiUserId);
 
-        using var transaction = await _dbContext.Database.BeginTransactionAsync();
+        var strategy = _dbContext.Database.CreateExecutionStrategy();
 
-        try
+        UserModel? res = null;
+
+        await strategy.ExecuteAsync(async () =>
         {
-            // Assuming _dbContext has a Users DbSet property
-            await _dbContext.Users.AddAsync(user);
-            await _dbContext.SaveChangesAsync(false);
-            await transaction.CommitAsync();
+            ////using var transaction = await _dbContext.Database.BeginTransactionAsync();
 
-            return _mapper.Map<User, UserModel>(user);
-        }
-        catch (Exception ex)
-        {
-            _logger.LogError(ex, "An error occurred while creating the user.");
-            await transaction.RollbackAsync();
+            try
+            {
+                // Assuming _dbContext has a Users DbSet property
+                await _dbContext.Users.AddAsync(user);
+                await _dbContext.SaveChangesAsync(false);
+                ///await transaction.CommitAsync();
 
-            throw new Exception("Failed to create user");
-        }
+                res = _mapper.Map<User, UserModel>(user);
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex, "An error occurred while creating the user.");
+                ///await transaction.RollbackAsync();
+
+                throw new Exception("Failed to create user", ex);
+            }
+        });
+
+        return res;
     }
 }

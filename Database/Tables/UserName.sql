@@ -7,10 +7,10 @@ CREATE TABLE sbt.UserName (
     CreatedById     INT                      NOT NULL    REFERENCES sbt.User(Id),
 	UpdatedOn   	TIMESTAMP   NOT NULL	DEFAULT CURRENT_TIMESTAMP,
     UpdatedById     INT                      NOT NULL    REFERENCES sbt.User(Id),
-	IsActive    	BOOLEAN	    NOT NULL	DEFAULT TRUE,
+	IsActive    	BOOLEAN	    NOT NULL	DEFAULT TRUE
 );
 
-CREATE UNIQUE INDEX user_guid_idx on sbt.UserName(Guid); 
+CREATE UNIQUE INDEX username_guid_idx on sbt.UserName(Guid); 
 
-CREATE UNIQUE INDEX user_username_idx on sbt.UserName(UserName); 
+CREATE UNIQUE INDEX username_idx on sbt.UserName(UserName); 
 

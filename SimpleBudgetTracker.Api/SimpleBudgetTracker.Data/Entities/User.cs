@@ -43,6 +43,7 @@ public class User
     {
         return new User
         {
+            Guid = Guid.NewGuid(),
             UserName = userName,
             FirstName = firstName,
             LastName = lastName,
